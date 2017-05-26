@@ -28,7 +28,7 @@
 #define MAX_STRING_LENGTH 1000
 
 static const long LRAND_MAX = ((long) RAND_MAX + 2) * (long)RAND_MAX;
-typedef double real;
+typedef float real;
 
 typedef struct cooccur_rec {
     int word1;
@@ -214,7 +214,7 @@ int main(int argc, char **argv) {
     if ((i = find_arg((char *)"-temp-file", argc, argv)) > 0) strcpy(file_head, argv[i + 1]);
     else strcpy(file_head, (char *)"temp_shuffle");
     if ((i = find_arg((char *)"-memory", argc, argv)) > 0) memory_limit = atof(argv[i + 1]);
-    array_size = (long long) (0.95 * (real)memory_limit * 1073741824/(sizeof(CREC)));
+    array_size = (long long) (0.95 * (double)memory_limit * 1073741824/(sizeof(CREC)));
     if ((i = find_arg((char *)"-array-size", argc, argv)) > 0) array_size = atoll(argv[i + 1]);
     return shuffle_by_chunks();
 }

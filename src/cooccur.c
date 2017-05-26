@@ -31,7 +31,7 @@
 #define HASHFN bitwisehash
 
 static const int MAX_STRING_LENGTH = 1000;
-typedef double real;
+typedef float real;
 
 typedef struct cooccur_rec {
     int word1;
@@ -423,7 +423,7 @@ int find_arg(char *str, int argc, char **argv) {
 
 int main(int argc, char **argv) {
     int i;
-    real rlimit, n = 1e5;
+    double rlimit, n = 1e5;
     vocab_file = malloc(sizeof(char) * MAX_STRING_LENGTH);
     file_head = malloc(sizeof(char) * MAX_STRING_LENGTH);
     
@@ -464,7 +464,7 @@ int main(int argc, char **argv) {
     
     /* The memory_limit determines a limit on the number of elements in bigram_table and the overflow buffer */
     /* Estimate the maximum value that max_product can take so that this limit is still satisfied */
-    rlimit = 0.85 * (real)memory_limit * 1073741824/(sizeof(CREC));
+    rlimit = 0.85 * (double)memory_limit * 1073741824/(sizeof(CREC));
     while (fabs(rlimit - n * (log(n) + 0.1544313298)) > 1e-3) n = rlimit / (log(n) + 0.1544313298);
     max_product = (long long) n;
     overflow_length = (long long) rlimit/6; // 0.85 + 1/6 ~= 1

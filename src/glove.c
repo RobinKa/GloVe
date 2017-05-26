@@ -33,7 +33,7 @@
 #define _FILE_OFFSET_BITS 64
 #define MAX_STRING_LENGTH 1000
 
-typedef double real;
+typedef float real;
 
 typedef struct cooccur_rec {
     int word1;
